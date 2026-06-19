@@ -47,9 +47,17 @@
   .lightbox .lb-btn{border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.05);color:var(--ink);font:inherit;font-size:12px;font-weight:500;padding:8px 16px;border-radius:9999px;cursor:pointer;display:inline-flex;align-items:center;gap:7px}
   .lightbox .lb-btn svg{width:13px;height:13px}
   footer{margin-top:34px;color:var(--faint);font-size:12px;line-height:1.7;font-weight:300;max-width:80ch}
+
+  #pp-splash{position:fixed;inset:0;z-index:9999;background:#1B1A1C;display:flex;align-items:center;justify-content:center;transition:opacity .6s ease}
+  #pp-splash.hide{opacity:0;pointer-events:none}
+  #pp-splash .pp-logo{display:flex;flex-direction:column;line-height:.82;font-family:"Inter",system-ui,sans-serif;font-weight:600;color:#fff;font-size:58px;letter-spacing:-.04em;opacity:0;transform:translateY(6px);animation:pp-in .7s ease forwards}
+  #pp-splash .pp-logo .r{margin-left:.3em}
+  #pp-splash .pp-logo .dot{color:#D50058}
+  @keyframes pp-in{to{opacity:1;transform:none}}
 </style>
 </head>
 <body>
+<div id="pp-splash"><div class="pp-logo"><span>CA</span><span class="r">CD<span class="dot">.</span></span></div></div>
 <div class="wrap">
   <p class="eyebrow">CACD · Animation d’ouverture — couleur & saisons</p>
   <h1>Le tracé en couleur, et ses ambiances.</h1>
@@ -68,9 +76,9 @@ window.CACD_ALL={"pr_couleur":{"v":"5.9.0","fr":60,"ip":0,"op":450,"w":375,"h":3
 </script>
 <script>
   const GROUPS=[
-    ['Printemps','#7FB069',[['pr_couleur','Couleur','Tracé teinté vert sauge'],['pr_fleur','Fleur sakura','Éclôt autour du logo'],['pr_chute','Chute de pétales','Pétales fins, pleine largeur'],['pr_ouvre','Fleur qui s’ouvre','La fleur s’épanouit au-dessus du logo'],['pr_etoile','Poussière de pétales','Pétales de cerisier qui scintillent']]],
+    ['Printemps','#7FB069',[['pr_couleur','Couleur','Tracé teinté vert sauge'],['pr_fleur','Fleur sakura','Éclôt autour du logo'],['pr_chute','Chute de pétales','Pétales fins, pleine largeur'],['pr_etoile','Poussière de pétales','Pétales de cerisier qui scintillent']]],
     ['Été','#E8A33D',[['et_couleur','Couleur','Tracé teinté ambre'],['et_ouvre','Soleil qui s’ouvre','Rayons qui s’ouvrent autour du logo'],['et_centre','Soleil · centre','Rayonnant au-dessus du logo'],['et_droite','Soleil · droite','Rayonnant décalé à droite'],['et_etoile','Poussière de soleil','Petits soleils qui scintillent']]],
-    ['Automne','#C56A3A',[['au_couleur','Couleur','Tracé teinté terracotta'],['au_pluie','Pluie & parapluie','Pluie déviée par un parapluie'],['au_hero_v2','Feuilles','Feuilles fines, pleine largeur'],['au_etoile','Poussière de feuilles','Feuilles d’érable qui scintillent']]],
+    ['Automne','#C56A3A',[['au_couleur','Couleur','Tracé teinté terracotta'],['au_hero_v2','Feuilles','Feuilles fines, pleine largeur'],['au_etoile','Poussière de feuilles','Feuilles d’érable qui scintillent']]],
     ['Hiver','#7FA8C9',[['hi_couleur','Couleur','Tracé teinté bleu glacé'],['hiver','Flocons','Cristaux bleu glacé, en suspension'],['hi_etoile','Poussière de neige','Flocons délicats qui scintillent']]]
   ];
   const DATA=window.CACD_ALL;
@@ -108,6 +116,12 @@ window.CACD_ALL={"pr_couleur":{"v":"5.9.0","fr":60,"ip":0,"op":450,"w":375,"h":3
   document.getElementById('lbReplay').addEventListener('click',()=>{if(lbAnim){lbAnim.goToAndStop(0,true);lbAnim.goToAndPlay(0,true);}});
   lb.addEventListener('click',e=>{if(e.target===lb)closeLB();});
   document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLB();});
+</script>
+<script>
+(function(){var s=document.getElementById('pp-splash');if(!s)return;var done=false;
+function hide(){if(done)return;done=true;s.classList.add('hide');setTimeout(function(){if(s.parentNode)s.remove();},650);}
+window.addEventListener('load',function(){setTimeout(hide,550);});
+setTimeout(hide,3500);})();
 </script>
 </body>
 </html>
